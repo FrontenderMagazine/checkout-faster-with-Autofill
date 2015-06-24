@@ -1,7 +1,9 @@
+# Помощь пользователям быстрее проходить проверку с автозаполнителем
+
 Люди ненавидят заполнять веб формы, особенно на мобильных устройствах. Они 
 могут быть долгими и разочаровывающими и часто содержат несколько страниц шагов и проверок. Это приводит к негативному осадку у пользователя и его большому разочарованию. Чтобы упросить эти вещи для пользователей, браузеры уже давно имеют механизм автозаполнения полей от имени пользователя. Хром принял это шаг в далеком 2011 году путем введения [Автозаполнения][1], которое заполняет форму целиком, основываясь на автозаполнении профиль пользователя.
 
-Начиная с следующей версии Chrome (M43), мы делаем еще один шаг, помогая пользователям заполнять формы быстрее, расширяем нашу поддержку для кредитных карт и адресов в Google. Это означает, что одну и ту же информацию пользователи используют, при покупке вещей внутри Google Play магазина и на сайтах которые они посещают. Используя стандартные атрибуты *автозаполнения*, вы можете убедиться в счастье ваших пользователей, помогая Chrome автозаполнять ваши пароли в формы с 100% точностью.
+Начиная с следующей версии Chrome (M43), мы делаем еще один шаг, помогая пользователям заполнять формы быстрее, расширяем нашу поддержку для кредитных карт и адресов в Google. Это означает, что одну и ту же информацию пользователи используют, при покупке вещей внутри Google Play магазина и на сайтах которые они посещают. Используя стандартные атрибуты *автозаполнения*, вы можете убедиться в лояльности ваших пользователей, помогая Chrome автозаполнять ваши пароли в формы с 100% точностью.
 
 Атрибуты автозаполнения — это способ для тебя, разработчик, контролировать, как браузер должен заполнить данное поле формы. Например, если вы ожидаете от пользователя который укажет `Улицу` вы можете подсказать браузеру, что вы ожидали его с помощью `autocomplete="address-line1"`. Это предотвращает браузер от неправильно угадывания поля формы на вашем сайте, которые могут привести к плохому опыту пользователя.
 
@@ -9,190 +11,149 @@
 
 ![автозаполнение показавает силу быстрого и легкого заполнения формы][3]
 
-In the past, many developers would add *autocomplete="off"* to their form
-fields to prevent the browser from performing any kind of autocomplete 
-functionality. While Chrome will still respect this tag for autocomplete data, it will not respect it for autofill data. So when should you use*autocomplete=”off”*? One example is when you’ve implemented your own version of autocompletefor search. Another example is any form field where users will input and submit different kinds of information where it would not be useful to have the browser remember what was submitted previously.
+В прошлом, большинство разработчиков добавляли *autocomplete="off"* в свои поля форм, чтобы предотвратить браузер от любой функциональности автозаполнения. В то время как Chrome по-прежнему принимает этот тег для автозаполнения, он не будет принимать его данных автозаполнения. Поэтому когда следует использовать *autocomplete="off"*? Одним из примеров, когда вы реализовали свою собственную версию автозаполнения для поиска. Другим примером является любая форма, где пользователи вводять и представляют различные виды информации, где не обязательно помнить браузеру что было введено ранее.
 
-The most common *autocomplete* attributes are shown in the table below and are documented in[Web Fundamentals][4].
+Наиболее распространенные атрибуты *автозаполнения* приведены в таблице ниже и описаны в [Веб основы][4].
 
-### Common Attributes
+### Общие атрибуты
 
-
-| **name attribute**                                                  | **
-autocomplete attribute
-**                                                   |
-||
-| ccname  
-cardnumber  
-cvc  
-ccmonth  
-ccyear  
-exp-date  
-card-type | cc-name  
-cc-number  
-cc-csc  
-cc-exp-month  
-cc-exp-year  
-cc-exp  
-cc-type |
-
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmNameCC"</span><span class="o">></span><span class="nx">Name</span> <span class="nx">on</span> <span class="nx">card</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"ccname"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmNameCC"</span> <span class="nx">required</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"Full Name"</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"cc-name"</span><span class="o">></span>    
-    
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmCCNum"</span><span class="o">></span><span class="nx">Card</span> <span class="nb">Number</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"cardnumber"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmCCNum"</span> <span class="nx">required</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"cc-number"</span><span class="o">></span>    
-    
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmCCCVC"</span><span class="o">></span><span class="nx">CVC</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"cvc"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmCCCVC"</span> <span class="nx">required</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"cc-csc"</span><span class="o">></span> 
-      
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmCCExp"</span><span class="o">></span><span class="nx">Expiry</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"cc-exp"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmCCExp"</span> <span class="nx">required</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"MM-YYYY"</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"cc-exp"</span><span class="o">></span>
-
-#### Name
+| **Название атрибута** | **Автозаполнение атрибута** |
+| --------------------- | --------------------------- |
+| ccname | cc-name |
+| cardnumber | cc-number |
+| cvc | cc-csc |
+| ccmonth | cc-exp-month |
+| ccyear | cc-exp-year |
+| exp-date | cc-exp |
+| card-type | cc-type |
 
 
+```javascript
+<label for="frmNameCC">Name on card</label>
+<input name="ccname" id="frmNameCC" required placeholder="Full Name" autocomplete="cc-name">
 
+<label for="frmCCNum">Card Number</label>
+<input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">    
 
+<label for="frmCCCVC">CVC</label>
+<input name="cvc" id="frmCCCVC" required autocomplete="cc-csc"> 
+  
+<label for="frmCCExp">Expiry</label>
+<input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" autocomplete="cc-exp">
+```
 
+#### Имя
 
+| **Название атрибута** | **Автозаполнение атрибута** |
+| --------------------- | --------------------------- |
+| name | name (full name) |
+| fname | given-name (first name) |
+| mname | additional-name (middle name) |
+| lname | family-name (last name) |
 
-| **name attribute**           | **autocomplete attribute
-**                                                                           |
-||
-| name  
-fname  
-mname  
-lname | name (full name)  
-given-name (first name)  
-additional-name (middle name)  
-family-name (last name) |
+```javascript
+<label for="frmNameA">Name</label>
+<input name="name" id="frmNameA" placeholder="Full name" required autocomplete="name">
+```
 
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmNameA"</span><span class="o">></span><span class="nx">Name</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"name"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmNameA"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"Full name"</span> <span class="nx">required</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"name"</span><span class="o">></span>
+#### Почта
 
-#### Email
+| **Название атрибута** | **Автозаполнение атрибута** |
+| --------------------- | --------------------------- |
+| email | email |
 
+```javascript
+<label for="frmEmailA">Email</label>
+<input type="email" name="email" id="frmEmailA" placeholder="name@example.com" required autocomplete="email">
 
+<label for="frmEmailC">Confirm Email</label>
+<input type="email" name="emailC" id="frmEmailC" placeholder="name@example.com" required autocomplete="email">
+```
 
+#### Адрес
 
+| **Название атрибута** | **Автозаполнение атрибута** |
+| --------------------- | --------------------------- |
+| address | For one address input: street-address |
+| city | For two address inputs: address-line1 , address-line2 |
+| region | address-level1 (state or province) |
+| province | address-level2 (city) |
+| state | postal-code (zip code) |
+| zip | country |
+| zip2 |  |
+| postal |  |
+| postal |  |
 
+```javascript
+<label for="frmAddressS">Address</label>
+<input name="ship-address" required id="frmAddressS" placeholder="123 Any Street" autocomplete="shipping street-address">
 
+<label for="frmCityS">City</label>
+<input name="ship-city" required id="frmCityS" placeholder="New York" autocomplete="shipping address-level2">
 
-| **name attribute** | **autocomplete attribute** |
-||
-| email              | email                      |
+<label for="frmStateS">State</label>
+<input name="ship-state" required id="frmStateS" placeholder="NY" autocomplete="shipping address-level1">
 
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmEmailA"</span><span class="o">></span><span class="nx">Email</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"email"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"email"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmEmailA"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="nx">required</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"email"</span><span class="o">></span>
-    
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmEmailC"</span><span class="o">></span><span class="nx">Confirm</span> <span class="nx">Email</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"email"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"emailC"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmEmailC"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"name@example.com"</span> <span class="nx">required</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"email"</span><span class="o">></span>
+<label for="frmZipS">Zip</label>
+<input name="ship-zip" required id="frmZipS" placeholder="10011" autocomplete="shipping postal-code">
 
-#### Address
+<label for="frmCountryS">Country</label>
+<input name="ship-country" required id="frmCountryS" placeholder="USA" autocomplete="shipping country">
+```
 
+#### Телефон
 
-| **name attribute
-**                                                         | **autocomplete 
-attribute
-**                                                                                                                                                                    |
-||
-| address  
-city  
-region  
-province  
-state  
-zip  
-zip2  
-postal  
-country | For one address input: street-address  
-For two address inputs:
-address-line1 , address-line2
-address-level1 (state or
-province
-)  
-address-level2 (city)  
-postal-code (zip code)  
-country |
+| **Название атрибута** | **Автозаполнение атрибута** |
+| --------------------- | --------------------------- |
+| phone | tel |
+| mobile |  |
+| country-code |  |
+| area-code |  |
+| exchange |  |
+| suffix |  |
+| ext |  |
 
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmAddressS"</span><span class="o">></span><span class="nx">Address</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"ship-address"</span> <span class="nx">required</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmAddressS"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"123 Any Street"</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"shipping street-address"</span><span class="o">></span>
-    
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmCityS"</span><span class="o">></span><span class="nx">City</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"ship-city"</span> <span class="nx">required</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmCityS"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"New York"</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"shipping locality"</span><span class="o">></span>
-    
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmStateS"</span><span class="o">></span><span class="nx">State</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"ship-state"</span> <span class="nx">required</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmStateS"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"NY"</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"shipping region"</span><span class="o">></span>
-    
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmZipS"</span><span class="o">></span><span class="nx">Zip</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"ship-zip"</span> <span class="nx">required</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmZipS"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"10011"</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"shipping postal-code"</span><span class="o">></span>
-    
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmCountryS"</span><span class="o">></span><span class="nx">Country</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"ship-country"</span> <span class="nx">required</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmCountryS"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"USA"</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"shipping country"</span><span class="o">></span>
+```javascript
+<label for="frmPhoneNumA">Phone</label>
+<input type="tel" name="phone" id="frmPhoneNumA" placeholder="+1-650-450-1212" required autocomplete="tel">
+```
 
-#### Phone
+Атрибуты автозаполнения могут сопровождаться именем раздела, например:
 
+*   **shipping** - имя
+*   **billing** - адрес улицы
 
-| **name attribute**                                                  | **
-autocomplete attribute
-** |
-||
-| phone  
-mobile  
-country-code  
-area-code  
-exchange  
-suffix  
-ext | tel                        |
+Это рекомендуется, потому что это сделает вашу разметки легче для разбора и понимания. Браузер автозаполненяет различные секции отдельно, а не в виде непрерывной формы.
 
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmPhoneNumA"</span><span class="o">></span><span class="nx">Phone</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"tel"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"phone"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmPhoneNumA"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"+1-650-450-1212"</span> <span class="nx">required</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"tel"</span><span class="o">></span>
+#### Пример формы оплаты
 
-The autocomplete attributes can be accompanied with a section name, such as:
+```javascript
+<label for="frmNameCC">Name on card</label>
+<input name="ccname" id="frmNameCC" required placeholder="Full Name" autocomplete="cc-name">
 
-*   **shipping** - given-name
-*   **billing** - street-address  
-    
+<label for="frmCCNum">Card Number</label>
+<input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">
 
-It is recommended because it will make your markup easier to parse and
-understand. The browser will autofill different sections separately and not as a
-continuous form.
+<label for="frmCCCVC">CVC</label>
+<input name="cvc" id="frmCCCVC" required autocomplete="cc-csc">
+  
+<label for="frmCCExp">Expiry</label>
+<input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" autocomplete="cc-exp">
+```
 
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmNameCC"</span><span class="o">></span><span class="nx">Name</span> <span class="nx">on</span> <span class="nx">card</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"ccname"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmNameCC"</span> <span class="nx">required</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"Full Name"</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"cc-name"</span><span class="o">></span>
-    
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmCCNum"</span><span class="o">></span><span class="nx">Card</span> <span class="nb">Number</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"cardnumber"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmCCNum"</span> <span class="nx">required</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"cc-number"</span><span class="o">></span>
-    
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmCCCVC"</span><span class="o">></span><span class="nx">CVC</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"cvc"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmCCCVC"</span> <span class="nx">required</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"cc-csc"</span><span class="o">></span>
-      
-    <span class="o"><</span><span class="nx">label</span> <span class="k">for</span><span class="o">=</span><span class="s2">"frmCCExp"</span><span class="o">></span><span class="nx">Expiry</span><span class="o"><</span><span class="err">/label></span>
-    <span class="o"><</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"cc-exp"</span> <span class="nx">id</span><span class="o">=</span><span class="s2">"frmCCExp"</span> <span class="nx">required</span> <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"MM-YYYY"</span> <span class="nx">autocomplete</span><span class="o">=</span><span class="s2">"cc-exp"</span><span class="o">></span>
+**Лучшие практики форм**
 
-**Forms best practices**
-
-1.  **Use \_labels\_on form inputs**, and ensure they’re visible when the
-    field is in focus. The label element provides direction to the user, telling 
-    them what information is needed in a form element. Each label is associated with
-    an input element by placing it inside the label element. Applying labels to form
-    elements also helps to improve the touch target size: the user can touch either 
-    the label or the input in order to place focus on the input element.
+1.  **Используйте \_метки\_ на полях ввода в формах**, и убедитесь, что они отображаются когда поле в фокусе. Метка элемента указывает пользователю, сообщая ему какая информация необходима для элемента формы. Каждая метка ассоциируется с элементом ввода, путем размещения его внутри метки элемента. Применение меток для элементов формы также помогает улучшить удобство ввода пользователем данных: пользователь может коснуться метки или элемента ввода, чтобы поставить фокус на элементе ввода.
    
-2.  **Use placeholder to provide guidance** about what you expect. The
-    placeholder attribute provides a hint to the user about what’s expected in the 
-    input, typically by displaying the value as light text until the the user starts
-    typing in the element. Placeholders disappear as soon as the user starts typing 
-    in an element, thus they are not a replacement for labels. They should be used 
-    as an aid to help guide users on the required format and content.
-   
+2.  **Используйте плейсхолдеры, чтобы обеспечить руководство** которое вы ожидали. Атрибут плейсхолдер подсказывает пользователю о том, что ожидается при вводе, как правило показывая значение светлым текстом, когда пользователь начинает набирать текст в элементе. Плейсхолдеры исчезают, как только пользователь начинает вводить в элементе. Таким образом, они не являются заменой для метод. Они должны быть использованы в качестве помощи, чтобы помочь сориентировать пользователей на требуемом формате и содержании.
 
-### Demo
+### Демо
 
-You can see it in action over at: 
+Вы можете увидеть это в действии по адресу: 
 [greenido.github.io/Product-Site-101/form-cc-example.html][5]  
-Or check the code: <https://github.com/greenido/Product-Site-101>
+Или посмотреть код: <https://github.com/greenido/Product-Site-101>
 
-![An example to a form that use autocomplete tags][6]
+![Пример формы, ипользующей автозаполнения тегов][6]
 
  [1]: https://support.google.com/chrome/answer/142893?hl=en
  [2]: https://html.spec.whatwg.org/multipage/forms.html#autofill
