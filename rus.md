@@ -56,19 +56,18 @@
 | card-type | cc-type |
 
 
-```javascript
-<label for="frmNameCC">Name on card</label>
-<input name="ccname" id="frmNameCC" required placeholder="Full Name" autocomplete="cc-name">
+        <label for="frmNameCC">Name on card</label>
+        <input name="ccname" id="frmNameCC" required placeholder="Full Name" autocomplete="cc-name">
 
-<label for="frmCCNum">Card Number</label>
-<input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">    
+        <label for="frmCCNum">Card Number</label>
+        <input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">    
 
-<label for="frmCCCVC">CVC</label>
-<input name="cvc" id="frmCCCVC" required autocomplete="cc-csc"> 
-  
-<label for="frmCCExp">Expiry</label>
-<input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" autocomplete="cc-exp">
-```
+        <label for="frmCCCVC">CVC</label>
+        <input name="cvc" id="frmCCCVC" required autocomplete="cc-csc"> 
+          
+        <label for="frmCCExp">Expiry</label>
+        <input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" autocomplete="cc-exp">
+
 
 #### Имя
 
@@ -79,10 +78,10 @@
 | mname | additional-name (middle name) |
 | lname | family-name (last name) |
 
-```javascript
-<label for="frmNameA">Name</label>
-<input name="name" id="frmNameA" placeholder="Full name" required autocomplete="name">
-```
+
+        <label for="frmNameA">Name</label>
+        <input name="name" id="frmNameA" placeholder="Full name" required autocomplete="name">
+
 
 #### Почта
 
@@ -90,13 +89,13 @@
 | --------------------- | --------------------------- |
 | email | email |
 
-```javascript
-<label for="frmEmailA">Email</label>
-<input type="email" name="email" id="frmEmailA" placeholder="name@example.com" required autocomplete="email">
 
-<label for="frmEmailC">Confirm Email</label>
-<input type="email" name="emailC" id="frmEmailC" placeholder="name@example.com" required autocomplete="email">
-```
+        <label for="frmEmailA">Email</label>
+        <input type="email" name="email" id="frmEmailA" placeholder="name@example.com" required autocomplete="email">
+
+        <label for="frmEmailC">Confirm Email</label>
+        <input type="email" name="emailC" id="frmEmailC" placeholder="name@example.com" required autocomplete="email">
+
 
 #### Адрес
 
@@ -112,22 +111,22 @@
 | postal |  |
 | country |  |
 
-```javascript
-<label for="frmAddressS">Address</label>
-<input name="ship-address" required id="frmAddressS" placeholder="123 Any Street" autocomplete="shipping street-address">
 
-<label for="frmCityS">City</label>
-<input name="ship-city" required id="frmCityS" placeholder="New York" autocomplete="shipping address-level2">
+        <label for="frmAddressS">Address</label>
+        <input name="ship-address" required id="frmAddressS" placeholder="123 Any Street" autocomplete="shipping street-address">
 
-<label for="frmStateS">State</label>
-<input name="ship-state" required id="frmStateS" placeholder="NY" autocomplete="shipping address-level1">
+        <label for="frmCityS">City</label>
+        <input name="ship-city" required id="frmCityS" placeholder="New York" autocomplete="shipping address-level2">
 
-<label for="frmZipS">Zip</label>
-<input name="ship-zip" required id="frmZipS" placeholder="10011" autocomplete="shipping postal-code">
+        <label for="frmStateS">State</label>
+        <input name="ship-state" required id="frmStateS" placeholder="NY" autocomplete="shipping address-level1">
 
-<label for="frmCountryS">Country</label>
-<input name="ship-country" required id="frmCountryS" placeholder="USA" autocomplete="shipping country">
-```
+        <label for="frmZipS">Zip</label>
+        <input name="ship-zip" required id="frmZipS" placeholder="10011" autocomplete="shipping postal-code">
+
+        <label for="frmCountryS">Country</label>
+        <input name="ship-country" required id="frmCountryS" placeholder="USA" autocomplete="shipping country">
+
 
 #### Телефон
 
@@ -141,10 +140,9 @@
 | suffix |  |
 | ext |  |
 
-```javascript
-<label for="frmPhoneNumA">Phone</label>
-<input type="tel" name="phone" id="frmPhoneNumA" placeholder="+1-650-450-1212" required autocomplete="tel">
-```
+
+        <label for="frmPhoneNumA">Phone</label>
+        <input type="tel" name="phone" id="frmPhoneNumA" placeholder="+1-650-450-1212" required autocomplete="tel">
 
 Атрибуты автозаполнения могут быть дополнены именем раздела, например:
 
@@ -156,19 +154,18 @@
 
 #### Пример формы оплаты
 
-```javascript
-<label for="frmNameCC">Name on card</label>
-<input name="ccname" id="frmNameCC" required placeholder="Full Name" autocomplete="cc-name">
+        <label for="frmNameCC">Name on card</label>
+        <input name="ccname" id="frmNameCC" required placeholder="Full Name" autocomplete="cc-name">
 
-<label for="frmCCNum">Card Number</label>
-<input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">
+        <label for="frmCCNum">Card Number</label>
+        <input name="cardnumber" id="frmCCNum" required autocomplete="cc-number">
 
-<label for="frmCCCVC">CVC</label>
-<input name="cvc" id="frmCCCVC" required autocomplete="cc-csc">
-  
-<label for="frmCCExp">Expiry</label>
-<input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" autocomplete="cc-exp">
-```
+        <label for="frmCCCVC">CVC</label>
+        <input name="cvc" id="frmCCCVC" required autocomplete="cc-csc">
+
+        <label for="frmCCExp">Expiry</label>
+        <input name="cc-exp" id="frmCCExp" required placeholder="MM-YYYY" autocomplete="cc-exp">
+
 
 **Полезные привычки при работе с формами**
 
